@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OCR ID Card</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <h1>Nhận dạng ký tự quang học OCR với Căn cước công dân</h1>
+    <br>
+    <form method="post" enctype="multipart/form-data" action="/upload">
+      <!-- <input type="file" name="images"> -->
+      <div  class="row">
+        <label  class="col-md-1 control-label">Chọn ảnh (PNG, JPG)</label>
+        <div class="col-md-2">
+          <input  class="form-control" type="file" name="images" accept=".jpg, .jpeg, .png" >
+        </div>
+        <input class="btn btn-success" type="submit" value="OCR">
+      </div>
+      
+    </form>
+    <br>
+    <div style="height: 100%; width: 100%;" class="row">
+    {% if filenames %}
+    
+      {% for filename in filenames %}
+      <div class="col-md-4">
+        <img style="height: 100%; width: 100%;" src="{{ url_for('display_image', filename=filename) }}">
+      </div>
+      {% endfor %}
+      <!-- <img style="height: 30%; width: 30%;" src="{{ url_for('display_image', filename=filename) }}"> -->
+      
+    {% endif %}
+
+    {% if info %}
+    <div class="col-md-4">
+      <ul>
+        {% for tt in info %}
+          <li>{{ tt }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+	  {% endif %}
+
+    </div>
+    
+    
+    
+</div>
+</body>
+</html>
